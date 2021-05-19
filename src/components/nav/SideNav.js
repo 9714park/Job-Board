@@ -8,13 +8,13 @@ function SideNav() {
       <h2>Jboard</h2>
       <ul className='side-nav__items'>
         <li className='nav-item'>
-          <Link to='/home'>
+          <Link to='/'>
             <i className='bx bx-home-alt'></i>
             <span className='nav-text'>Home</span>
           </Link>
         </li>
         <li className='nav-item'>
-          <Link to='/home'>
+          <Link to='/jobs'>
             <i className='bx bx-search-alt'></i>
             <span className='nav-text'>Search Jobs</span>
           </Link>

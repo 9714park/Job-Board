@@ -1,0 +1,16 @@
+.search-job .form-control {
+  width: 60%;
+}
+
+.search-row .bookmark__enabled, .search-row .bookmark__disabled {
+  display: none;
+}
+
+.search-row .bookmark__disabled.active {
+  display: inline-block
+}
+
+.actions .btn {
+  font-size: 1em;
+  font-weight: 700;
+}
