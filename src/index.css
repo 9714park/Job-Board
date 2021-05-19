@@ -1,13 +1,58 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+:root {
+  --first-color: #eeeef2;
+  --second-color: #36599D;
+  --third-color: #93959c;
+  --fourth-color: #e6e8eb;
+  --fifth-color: #44434d;
+  --bg-color: #12131a;
+  --first-font: #fff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --body-font: Calibre, 'San Francisco', 'SF Pro Text', -apple-system, system-ui, BlinkMacSystemFont, Roboto, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+  --code-font: 'Roboto Mono', 'SF Mono', 'Fira Code', 'Fira Mono', 'Lucida Console', Monaco, monospace;
+  --big-font-size: 3rem;
+  --h2_font_size: 2rem;
+  --normal-font-size: 0.938rem;
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  color: var(--first-color);
+}
+
+h1, h2, p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+*:focus {
+  outline: 0 !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
