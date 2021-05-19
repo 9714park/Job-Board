@@ -90,14 +90,38 @@ function SearchJobs() {
   const [jobList, setJobList] = useState(dummyJobList);
 
   const filterJobListByLocation = (location) => {
-    if (location == 'Reset') {
-      setJobList(dummyJobList);
-    } else {
-      const filteredJobList = dummyJobList.filter((job) =>
-        job.location.includes(location)
-      );
-      setJobList(filteredJobList);
+    const filteredJobList = jobList.filter((job) => job.location.includes(location));
+    setJobList(filteredJobList);
+  };
+
+  const filterJobListBySalary = (salary) => {
+    const filteredJobList = jobList.filter((job) => job.salary >= salary);
+    setJobList(filteredJobList);
+  };
+
+  const filterJobListByType = (type) => {
+    const filteredJobList = jobList.filter((job) => job.type.includes(type));
+    setJobList(filteredJobList);
+  };
+
+  const filterJobList = (filterObj) => {
+    const { location, salary, type } = filterObj;
+    let filteredJobList = dummyJobList;
+
+    if (location.active) {
+      filteredJobList = filteredJobList.filter((job) => {
+        return job.location.includes(location.filter);
+      });
     }
+    if (salary.active) {
+      filteredJobList = filteredJobList.filter((job) => job.salary >= salary.filter);
+    }
+
+    if (type.active) {
+      filteredJobList = filteredJobList.filter((job) => job.type.includes(type.filter));
+    }
+
+    setJobList(filteredJobList);
   };
 
   return (
@@ -120,7 +144,7 @@ function SearchJobs() {
           <h6 className='text-black fs-16 font-w600 mb-1'>Showing 246 Jobs Results</h6>
           <span className='fs-14'>Based your preferences</span>
         </div>
-        <SearchFilter onFilterByLocation={filterJobListByLocation} />
+        <SearchFilter onFilter={filterJobList} />
       </div>
       <div className='row'>
         <div className='col-xl-12'>
