@@ -7,4 +7,5 @@
   padding: 60px;
   color: var(--third-color);
   background-color: var(--fourth-color);
+  min-height: 100%;
 }

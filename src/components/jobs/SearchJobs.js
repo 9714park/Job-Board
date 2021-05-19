@@ -1,9 +1,11 @@
-import React, { Fragment, useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import JobDescription from './JobDescription';
 import SearchFilter from './SearchFilter';
 import './SearchJobs.css';
 
 function SearchJobs() {
+  /* Dummy Date */
   const dummyJobList = [
     {
       id: 1,
@@ -96,9 +98,22 @@ function SearchJobs() {
       fill: ['#D3D3D3', '#FFCF23', '#2E2E2E'],
     },
   ];
+
+  /* Use State */
   const [jobList, setJobList] = useState(dummyJobList);
   const [searchInput, setSearchInput] = useState('');
+  const [show, setShow] = useState(false);
+  const [selectedJob, setSelectedJob] = useState({});
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleJobSelected = (job) => {
+    setSelectedJob(job);
+    handleShow();
+  };
+
+  /* Filter Logic */
   const filterJobList = (filterObj) => {
     const { location, salary, type } = filterObj;
     let filteredJobList = dummyJobList;
@@ -119,6 +134,7 @@ function SearchJobs() {
     setJobList(filteredJobList);
   };
 
+  /* Search Input Logic */
   const onSearchInput = (event) => {
     setSearchInput(event.target.value);
   };
@@ -135,12 +151,14 @@ function SearchJobs() {
     }
   };
 
+  /* Reset Logic */
   const onReset = () => {
     setSearchInput('');
   };
 
   return (
     <Fragment>
+      <JobDescription show={show} close={handleClose} job={selectedJob} />
       <div className='d-flex align-items-center flex-wrap search-job bg-white rounded py-3 px-md-3 px-0 mb-4'>
         <div className='col-lg-11 d-md-flex'>
           <input
@@ -156,13 +174,7 @@ function SearchJobs() {
         </button>
       </div>
 
-      <div className='d-flex flex-wrap mb-4 align-items-center search-filter'>
-        <div className='mr-auto mb-2 pr-2'>
-          <h6 className='text-black fs-16 font-w600 mb-1'>
-            Showing {jobList.length} Jobs Results
-          </h6>
-          <span className='fs-14'>Based your preferences</span>
-        </div>
+      <div className='d-flex flex-wrap mb-4 align-items-center justify-content-end search-filter'>
         <SearchFilter onFilter={filterJobList} onReset={onReset} />
       </div>
       <div className='row'>
@@ -171,7 +183,8 @@ function SearchJobs() {
             return (
               <div
                 className='d-flex flex-wrap search-row bg-white py-3 mb-3 rounded justify-content-between align-items-center'
-                key={job.id}>
+                key={job.id}
+                onClick={handleJobSelected.bind(this, job)}>
                 <div className='d-flex col-xl-4 col-xxl-3 col-lg-4 col-sm-6 align-items-center'>
                   <svg
                     className='mr-3'
@@ -198,11 +211,7 @@ function SearchJobs() {
                     />
                   </svg>
                   <div>
-                    <h2 className='title'>
-                      <Link to='/profile' className='text-black'>
-                        {job.title}
-                      </Link>
-                    </h2>
+                    <h2 className='title'>{job.title}</h2>
                   </div>
                 </div>
                 <div className='d-flex col-xl-2 col-lg-4 col-sm-6 align-items-center'>
@@ -273,7 +282,6 @@ function SearchJobs() {
                     <span>Location</span>
                   </div>
                 </div>
-
                 <div className='d-flex col-xl-2 col-lg-4 col-sm-6 mt-lg-0 mt-3 align-items-center '>
                   <div>
                     <h4 className='sub-title text-black'>{job.type}</h4>
@@ -311,6 +319,12 @@ function SearchJobs() {
               </div>
             );
           })}
+        </div>
+        <div className='mr-auto ml-3 mt-4 pr-2'>
+          <h6 className='text-black fs-16 font-w600 mb-1'>
+            Showing {jobList.length} Jobs Results
+          </h6>
+          <span className='fs-14'>Based your preferences</span>
         </div>
       </div>
     </Fragment>
