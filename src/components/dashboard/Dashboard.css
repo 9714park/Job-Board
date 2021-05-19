@@ -1,0 +1,21 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  margin-bottom: 1.875rem;
+  background-color: #fff;
+  transition: all .5s ease-in-out;
+  position: relative;
+  border: 0px solid transparent;
+  border-radius: 1.25rem;
+  box-shadow: 0px 12px 23px 0px rgb(63 154 224 / 4%);
+  height: calc(100% - 30px);
+}
+
+.card-body {
+  flex: 1 2 auto;
+  padding: 1.875rem;
+  min-height: 1px;
+  padding: 1.25rem;
+}

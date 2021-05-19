@@ -1,0 +1,29 @@
+.status-panels {
+  padding: 0 30px;
+}
+
+.status-panels .border-card h2 {
+  font-size: 3.2em;
+}
+
+.status-panels .text-secondary {
+  color: #3F9AE0 !important;
+}
+
+.status-panels .media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.status-panels .media-body {
+  flex: 1 1;
+}
+
+.status-panels .border-card .cd-icon {
+  height: 70px;
+  width: 70px;
+  line-height: 70px;
+  min-width: 70px;
+  text-align: center;
+  border-radius: 1.25rem;
+}
