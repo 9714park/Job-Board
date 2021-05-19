@@ -3,7 +3,7 @@ import './DashboardStatus.css';
 
 function DashboardStatus() {
   return (
-    <div>
+    <div className='mb-3'>
       <div className='row status-panels'>
         <div className='col-xl-4 col-xxl-6 col-lg-4 col-sm-6'>
           <div className='card border-card'>
