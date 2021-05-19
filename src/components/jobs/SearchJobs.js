@@ -1,11 +1,12 @@
-import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Fragment, useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import SearchFilter from './SearchFilter';
 import './SearchJobs.css';
 
 function SearchJobs() {
   const dummyJobList = [
     {
+      id: 1,
       title: 'Senior UX Designer',
       salary: 124000,
       type: 'Full-Time',
@@ -15,6 +16,7 @@ function SearchJobs() {
       fill: ['#D3D3D3', '#3144F3', '#8FD7FF'],
     },
     {
+      id: 2,
       title: 'UX Designer',
       salary: 44000,
       type: 'Internship',
@@ -24,6 +26,7 @@ function SearchJobs() {
       fill: ['#D3D3D3', '#23FFD7', '#2BC155'],
     },
     {
+      id: 3,
       title: 'Marketing Manager',
       salary: 64000,
       type: 'Full-Time',
@@ -33,6 +36,7 @@ function SearchJobs() {
       fill: ['#D3D3D3', '#F35F31', '#2E2E2E'],
     },
     {
+      id: 4,
       title: 'Product Manager',
       salary: 54000,
       type: 'Full-Time',
@@ -42,6 +46,7 @@ function SearchJobs() {
       fill: ['#D3D3D3', '#FFCF23', '#2E2E2E'],
     },
     {
+      id: 5,
       title: 'Senior Engineer',
       salary: 165000,
       type: 'Full-Time',
@@ -51,6 +56,7 @@ function SearchJobs() {
       fill: ['#FBA556', '#3144F3', '#2E2E2E'],
     },
     {
+      id: 6,
       title: 'Web Developer',
       salary: 42000,
       type: 'Part-Time',
@@ -60,6 +66,7 @@ function SearchJobs() {
       fill: ['#FBA556', '#FFCF23', '#EFF331'],
     },
     {
+      id: 7,
       title: 'Web Developer',
       salary: 65000,
       type: 'Contract',
@@ -69,6 +76,7 @@ function SearchJobs() {
       fill: ['#D3D3D3', '#3144F3', '#8FD7FF'],
     },
     {
+      id: 8,
       title: 'Backend Engineer',
       salary: 112000,
       type: 'Full-Time',
@@ -78,6 +86,7 @@ function SearchJobs() {
       fill: ['#D3D3D3', '#23FFD7', '#2BC155'],
     },
     {
+      id: 9,
       title: 'Quality Assurance Tester',
       salary: 42000,
       type: 'Part-Time',
@@ -88,21 +97,7 @@ function SearchJobs() {
     },
   ];
   const [jobList, setJobList] = useState(dummyJobList);
-
-  const filterJobListByLocation = (location) => {
-    const filteredJobList = jobList.filter((job) => job.location.includes(location));
-    setJobList(filteredJobList);
-  };
-
-  const filterJobListBySalary = (salary) => {
-    const filteredJobList = jobList.filter((job) => job.salary >= salary);
-    setJobList(filteredJobList);
-  };
-
-  const filterJobListByType = (type) => {
-    const filteredJobList = jobList.filter((job) => job.type.includes(type));
-    setJobList(filteredJobList);
-  };
+  const [searchInput, setSearchInput] = useState('');
 
   const filterJobList = (filterObj) => {
     const { location, salary, type } = filterObj;
@@ -124,6 +119,26 @@ function SearchJobs() {
     setJobList(filteredJobList);
   };
 
+  const onSearchInput = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const submitSearchInput = () => {
+    if (searchInput) {
+      let filteredJobList = dummyJobList;
+      filteredJobList = filteredJobList.filter((job) => {
+        return job.title.includes(searchInput);
+      });
+      setJobList(filteredJobList);
+    } else {
+      setJobList(dummyJobList);
+    }
+  };
+
+  const onReset = () => {
+    setSearchInput('');
+  };
+
   return (
     <Fragment>
       <div className='d-flex align-items-center flex-wrap search-job bg-white rounded py-3 px-md-3 px-0 mb-4'>
@@ -131,26 +146,32 @@ function SearchJobs() {
           <input
             className='form-control input-rounded mr-auto mb-md-0 mb-3'
             type='text'
+            value={searchInput}
             placeholder='Search by Title, Company or any jobs keyword...'
+            onChange={onSearchInput}
           />
         </div>
-        <Link to='/search-job' className='btn btn-primary rounded px-4'>
+        <button className='btn btn-primary rounded px-4' onClick={submitSearchInput}>
           FIND
-        </Link>
+        </button>
       </div>
 
       <div className='d-flex flex-wrap mb-4 align-items-center search-filter'>
         <div className='mr-auto mb-2 pr-2'>
-          <h6 className='text-black fs-16 font-w600 mb-1'>Showing 246 Jobs Results</h6>
+          <h6 className='text-black fs-16 font-w600 mb-1'>
+            Showing {jobList.length} Jobs Results
+          </h6>
           <span className='fs-14'>Based your preferences</span>
         </div>
-        <SearchFilter onFilter={filterJobList} />
+        <SearchFilter onFilter={filterJobList} onReset={onReset} />
       </div>
       <div className='row'>
         <div className='col-xl-12'>
           {jobList.map((job) => {
             return (
-              <div className='d-flex flex-wrap search-row bg-white py-3 mb-3 rounded justify-content-between align-items-center'>
+              <div
+                className='d-flex flex-wrap search-row bg-white py-3 mb-3 rounded justify-content-between align-items-center'
+                key={job.id}>
                 <div className='d-flex col-xl-4 col-xxl-3 col-lg-4 col-sm-6 align-items-center'>
                   <svg
                     className='mr-3'

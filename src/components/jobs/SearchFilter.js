@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect, useRef } from 'react';
-import { Dropdown } from 'react-bootstrap';
+import { Button, Dropdown } from 'react-bootstrap';
 
 function SearchFilter(props) {
   /* Use State */
@@ -93,9 +93,32 @@ function SearchFilter(props) {
       });
     }
   };
+
+  const onResetSelected = () => {
+    props.onReset();
+    setTypeFilterStatus({
+      name: '',
+      active: false,
+      filter: '',
+    });
+    setSalaryFilterStatus({
+      name: '',
+      active: false,
+      filter: 0,
+    });
+    setLocationFilterStatus({
+      name: '',
+      active: false,
+      filter: '',
+    });
+  };
+
   return (
     <Fragment>
-      <Dropdown className='dropdown custom-dropdown mb-0 mr-3 mt-3 mt-sm-0 mb-2'>
+      <Button className='mr-3' variant='danger' onClick={onResetSelected}>
+        RESET
+      </Button>
+      <Dropdown className='dropdown custom-dropdown mr-3'>
         <Dropdown.Toggle
           className='btn border border-primary text-black rounded i-false'
           role='button'
@@ -163,7 +186,7 @@ function SearchFilter(props) {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Dropdown className='dropdown custom-dropdown mb-0 mr-3 mt-3 mt-sm-0 mb-2'>
+      <Dropdown className='dropdown custom-dropdown mr-3'>
         <Dropdown.Toggle
           className='btn border border-primary text-black rounded i-false'
           role='button'
@@ -233,7 +256,7 @@ function SearchFilter(props) {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Dropdown className='dropdown custom-dropdown mb-0 mr-3 mt-3 mt-sm-0 mb-2'>
+      <Dropdown className='dropdown custom-dropdown mr-3'>
         <Dropdown.Toggle
           className='btn border border-primary text-black rounded i-false'
           role='button'
@@ -296,7 +319,7 @@ function SearchFilter(props) {
         </Dropdown.Menu>
       </Dropdown>
 
-      <Dropdown className='dropdown custom-dropdown mb-0 mr-3 mt-3 mt-sm-0 mb-2'>
+      <Dropdown className='dropdown custom-dropdown mr-3'>
         <Dropdown.Toggle
           className='btn border border-primary text-black rounded i-false'
           role='button'

@@ -5,26 +5,20 @@ import Dashboard from './components/dashboard/Dashboard';
 import SearchJobs from './components/jobs/SearchJobs';
 
 function App() {
-  let path = window.location.pathname;
-  path = path.split('/');
-  path = path[path.length - 1];
-
-  const routes = [{ url: '/', component: Dashboard }];
-
   return (
     <Router>
       <div className='App'>
         <Nav />
-        <Switch>
-          <div className='content'>
+        <div className='content'>
+          <Switch>
             <Route exact path='/'>
               <Dashboard />
             </Route>
             <Route exact path='/jobs'>
               <SearchJobs />
             </Route>
-          </div>
-        </Switch>
+          </Switch>
+        </div>
       </div>
     </Router>
   );
