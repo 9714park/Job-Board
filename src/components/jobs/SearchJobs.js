@@ -103,7 +103,16 @@ function SearchJobs() {
   const [jobList, setJobList] = useState(dummyJobList);
   const [searchInput, setSearchInput] = useState('');
   const [show, setShow] = useState(false);
-  const [selectedJob, setSelectedJob] = useState({});
+  const [selectedJob, setSelectedJob] = useState({
+    id: -1,
+    title: '',
+    salary: -1,
+    type: '',
+    location: '',
+    datePosted: new Date(),
+    saved: false,
+    fill: ['#D3D3D3', '#3144F3', '#8FD7FF'],
+  });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

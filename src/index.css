@@ -5,7 +5,7 @@
   --third-color: #93959c;
   --fourth-color: #ecedee;
   --fifth-color: #44434d;
-  --bg-color: #12131a;
+  --font-color: #38393f;
   --first-font: #fff;
 }
 
@@ -29,7 +29,7 @@ body {
   margin: 0;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
-  color: var(--first-color);
+  color: var(--font-color);
 }
 
 h1, h2, p {
