@@ -20,7 +20,7 @@ function SideNav() {
           </Link>
         </li>
         <li className='nav-item'>
-          <Link to='/home'>
+          <Link to='/application'>
             <i className='bx bx-paper-plane'></i>
             <span className='nav-text'>Applications</span>
           </Link>

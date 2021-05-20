@@ -3,6 +3,7 @@ import Nav from './components/nav/Nav';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
 import SearchJobs from './components/jobs/SearchJobs';
+import Application from './components/application/Application';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
             </Route>
             <Route exact path='/jobs'>
               <SearchJobs />
+            </Route>
+            <Route exact path='/application'>
+              <Application />
             </Route>
           </Switch>
         </div>
