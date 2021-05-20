@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import './JobDescription.css';
 
 function JobDescription(props) {

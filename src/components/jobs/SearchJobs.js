@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import JobDescription from './JobDescription';
+import JobForm from './JobForm';
 import SearchFilter from './SearchFilter';
 import './SearchJobs.css';
 
@@ -102,7 +103,8 @@ function SearchJobs() {
   /* Use State */
   const [jobList, setJobList] = useState(dummyJobList);
   const [searchInput, setSearchInput] = useState('');
-  const [show, setShow] = useState(false);
+  const [showJobDescription, setJobDescriptionShow] = useState(false);
+  const [showJobForm, setJobFormShow] = useState(false);
   const [selectedJob, setSelectedJob] = useState({
     id: -1,
     title: '',
@@ -114,12 +116,17 @@ function SearchJobs() {
     fill: ['#D3D3D3', '#3144F3', '#8FD7FF'],
   });
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleJobDescriptionClose = () => setJobDescriptionShow(false);
+  const handleJobDescriptionShow = () => setJobDescriptionShow(true);
+  const handleJobFormClose = () => setJobFormShow(false);
+  const handleJobFormShow = (event) => {
+    event.stopPropagation();
+    setJobFormShow(true);
+  };
 
   const handleJobSelected = (job) => {
     setSelectedJob(job);
-    handleShow();
+    handleJobDescriptionShow();
   };
 
   /* Filter Logic */
@@ -167,7 +174,12 @@ function SearchJobs() {
 
   return (
     <Fragment>
-      <JobDescription show={show} close={handleClose} job={selectedJob} />
+      <JobDescription
+        show={showJobDescription}
+        close={handleJobDescriptionClose}
+        job={selectedJob}
+      />
+      <JobForm show={showJobForm} close={handleJobFormClose} />
       <div className='d-flex align-items-center flex-wrap search-job bg-white rounded py-3 px-md-3 px-0 mb-4'>
         <div className='col-lg-11 d-md-flex'>
           <input
@@ -298,11 +310,11 @@ function SearchJobs() {
                   </div>
                 </div>
                 <div className='col-xl-2 col-xxl-3 text-xl-right text-lg-left text-sm-right col-lg-12 col-sm-6 mt-xl-0 mt-3 actions'>
-                  <Link
-                    to='/profile'
+                  <button
+                    onClick={handleJobFormShow}
                     className='btn btn-sm btn-outline-primary rounded mr-2 p-2'>
                     Apply Now
-                  </Link>
+                  </button>
                   <label className='like-btn mb-2 mt-3 mt-sm-0'>
                     <svg
                       className='bookmark__disabled active'
