@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Dropdown } from 'react-bootstrap';
+import './Application.css';
 
 function Application() {
   const dummyApplicationList = [
@@ -132,31 +132,31 @@ function Application() {
   const returnStatusButton = (application) => {
     if (application.status == 'Candidate') {
       return (
-        <a className='btn rounded btn-info mr-3 ml-auto' href='#'>
+        <a className='btn rounded btn-info mr-3 ' href='#'>
           Candidate
         </a>
       );
     } else if (application.status == 'On-Hold') {
       return (
-        <a className='btn rounded btn-warning mr-3 ml-auto' href='#'>
+        <a className='btn rounded btn-warning mr-3 ' href='#'>
           On-Hold
         </a>
       );
     } else if (application.status == 'Pending') {
       return (
-        <a className='btn rounded btn-secondary mr-3 ml-auto' href='#'>
+        <a className='btn rounded btn-secondary mr-3' href='#'>
           Pending
         </a>
       );
     } else if (application.status == 'Rejected') {
       return (
-        <a className='btn rounded btn-danger mr-3 ml-auto' href='#'>
+        <a className='btn rounded btn-danger mr-3' href='#'>
           Rejected
         </a>
       );
     } else {
       return (
-        <a className='btn rounded btn-success mr-3 ml-auto' href='#'>
+        <a className='btn rounded btn-success mr-3 ' href='#'>
           Accepted
         </a>
       );
@@ -251,16 +251,14 @@ function Application() {
                         </td>
                         <td>{application.type}</td>
                         <td>
-                          <div className='d-flex'>
+                          <div className='d-flex '>
                             <a className='contact-icon mr-3' href='#'>
                               <i className='fa fa-phone' aria-hidden='true' />
                             </a>
                           </div>
                         </td>
                         <td>
-                          <div className='d-flex align-items-center'>
-                            {returnStatusButton(application)}
-                          </div>
+                          <div className='d-flex'>{returnStatusButton(application)}</div>
                         </td>
                       </tr>
                     );
@@ -268,7 +266,7 @@ function Application() {
                 </tbody>
               </table>
 
-              <div className='d-sm-flex text-center justify-content-between align-items-center'>
+              <div className='d-sm-flex text-center justify-content-between align-items-center footer'>
                 <div className='dataTables_info' id='example5_info'>
                   Showing {activePag.current * sort + 1} to{' '}
                   {data.length > (activePag.current + 1) * sort

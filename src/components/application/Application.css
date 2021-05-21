@@ -1,0 +1,78 @@
+.application .contact-icon {
+  height: 50px;
+  width: 50px;
+  min-width: 50px;
+  background: var(--second-color);
+  color: var(--first-color);
+  font-size: 28px;
+  border-radius: 1.25rem;
+  line-height: 50px;
+  transition: all 0.5s;
+  text-align: center;
+}
+
+.application .table td {
+  vertical-align: middle;
+}
+
+.application .dataTables_wrapper .dataTables_paginate {
+  border-radius: 1.25rem;
+}
+
+.application .dataTables_wrapper .dataTables_paginate {
+  padding: 25px 0;
+}
+
+.application .dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.next:hover {
+  background: var(--second-color) !important;
+  color: #fff !important;
+}
+
+.application .dataTables_wrapper .dataTables_paginate .paginate_button.previous, .dataTables_wrapper .dataTables_paginate .paginate_button.next {
+  background: #fff !important;
+  color: var(--second-color) !important;
+  margin: 0 10px;
+  border: 0px solid var(--second-color) !important;
+}
+
+.application .dataTables_wrapper .dataTables_paginate .paginate_button {
+  border: 0 !important;
+  padding: 15px 24px;
+  background: transparent !important;
+  border-radius: 1.25rem;
+  color: var(--second-color) !important;
+  font-size: 16px;
+  margin: 0;
+  display: inline-block;
+}
+
+.application .dataTables_wrapper .dataTables_paginate span {
+  border-radius: 1.25rem;
+  display: inline-block;
+  background: rgba(135, 67, 223, 0.08);
+  border: 0px solid var(--second-color);
+  margin: 0 0;
+}
+
+.application .dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.next:hover {
+  background: var(--second-color) !important;
+  color: #fff !important;
+}
+
+.application .dataTables_wrapper .dataTables_paginate .paginate_button.previous, .dataTables_wrapper .dataTables_paginate .paginate_button.next {
+  background: #fff !important;
+  color: var(--second-color) !important;
+  margin: 0 10px;
+  border: 0px solid var(--second-color) !important;
+}
+
+.application .dataTables_wrapper .dataTables_paginate .paginate_button:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  color: #fff !important;
+  background: var(--second-color) !important;
+}
+
+.application .footer {
+  position: fixed;
+  width: 76%;
+  bottom: 5%;
+}
