@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState, createRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Application.css';
@@ -89,7 +89,6 @@ function Application() {
   // use effect
   useEffect(() => {
     setData(document.querySelectorAll('#application tbody tr'));
-    handleCheckbox();
   }, [test]);
 
   // Active pagginarion
@@ -106,27 +105,12 @@ function Application() {
     settest(i);
   };
 
-  const checkbox = document.querySelectorAll('.application_sorting_1 input');
-  const motherCheckbox = document.querySelector('#checkAll');
+  let checkboxRefList = [];
 
-  const handleCheckbox = (type) => {
-    for (let i = 0; i < checkbox.length; i++) {
-      const element = checkbox[i];
-      if (type === 'all') {
-        if (motherCheckbox.checked) {
-          element.checked = true;
-        } else {
-          element.checked = false;
-        }
-      } else {
-        if (!element.checked) {
-          motherCheckbox.checked = false;
-          break;
-        } else {
-          motherCheckbox.checked = true;
-        }
-      }
-    }
+  const handleAllCheckbox = (event) => {
+    checkboxRefList.forEach((ref) => {
+      event.target.checked ? (ref.current.checked = true) : (ref.current.checked = false);
+    });
   };
 
   const returnStatusButton = (application) => {
@@ -182,7 +166,7 @@ function Application() {
                             className='custom-control-input'
                             id='checkAll'
                             required
-                            onClick={() => handleCheckbox('all')}
+                            onClick={(event) => handleAllCheckbox(event)}
                           />
                           <label className='custom-control-label' htmlFor='checkAll' />
                         </div>
@@ -197,20 +181,26 @@ function Application() {
                   </tr>
                 </thead>
                 <tbody>
-                  {dummyApplicationList.map((application) => {
+                  {dummyApplicationList.map((application, idx) => {
+                    const newCheckboxRef = createRef();
+                    checkboxRefList.push(newCheckboxRef);
+
                     return (
-                      <tr role='row' className='odd'>
+                      <tr role='row' className='odd' key={application.id}>
                         <td className='application_sorting_1'>
                           <div className='checkbox mr-0 align-self-center'>
                             <div className='custom-control custom-checkbox '>
                               <input
                                 type='checkbox'
-                                onClick={() => handleCheckbox()}
                                 className='custom-control-input'
-                                id='check1'
+                                id={`check${idx}`}
+                                ref={newCheckboxRef}
                                 required
                               />
-                              <label className='custom-control-label' htmlFor='check1' />
+                              <label
+                                className='custom-control-label'
+                                htmlFor={`check${idx}`}
+                              />
                             </div>
                           </div>
                         </td>
@@ -251,9 +241,9 @@ function Application() {
                         </td>
                         <td>{application.type}</td>
                         <td>
-                          <div className='d-flex '>
-                            <a className='contact-icon mr-3' href='#'>
-                              <i className='fa fa-phone' aria-hidden='true' />
+                          <div className='d-flex  '>
+                            <a className='contact-icon mr-3' href='mailto:test@test.com'>
+                              <i className='fa fa-envelope' aria-hidden='true'></i>
                             </a>
                           </div>
                         </td>
