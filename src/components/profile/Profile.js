@@ -1,44 +1,104 @@
-import React, { Fragment, useRef, useState } from 'react';
+import React, { Fragment, useRef, useState, useContext } from 'react';
 import avatar1 from '../../images/default-profile.jpg';
+import ProfileContext from '../ctx/profile-context';
 
 function Profile() {
-  const firstNameRef = useRef('');
-  const middleNameRef = useRef('');
-  const lastNameRef = useRef('');
-  const passwordRef = useRef('');
-  const rePasswordRef = useRef('');
-  const phoneRef = useRef('');
-  const emailRef = useRef('');
-  const addressRef = useRef('');
-  const cityRef = useRef('');
-  const countryRef = useRef('');
+  const porfileCtx = useContext(ProfileContext);
 
-  const inputRefList = [
-    firstNameRef,
-    middleNameRef,
-    lastNameRef,
-    passwordRef,
-    rePasswordRef,
-    phoneRef,
-    emailRef,
-    addressRef,
-    cityRef,
-    countryRef,
+  const [firstName, setFirstName] = useState(porfileCtx.firstName);
+  const [middleName, setMiddleName] = useState(porfileCtx.middleName);
+  const [lastName, setLastName] = useState(porfileCtx.lastName);
+  const [password, setPassword] = useState(porfileCtx.password);
+  const [rePassword, setRePassword] = useState(porfileCtx.rePassword);
+  const [phone, setPhone] = useState(porfileCtx.phone);
+  const [email, setEmail] = useState(porfileCtx.email);
+  const [address, setAddress] = useState(porfileCtx.address);
+  const [city, setCity] = useState(porfileCtx.city);
+  const [country, setCountry] = useState(porfileCtx.country);
+
+  const formInputState = [
+    firstName,
+    middleName,
+    lastName,
+    password,
+    rePassword,
+    phone,
+    email,
+    address,
+    city,
+    country,
   ];
 
   const [formIsValid, setFormIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
 
   const submitHandler = () => {
-    inputRefList.forEach((inputRef) => {
-      if (inputRef.current.value === '') {
-        setFormIsValid(false);
+    let formValid = true;
+    let passwordValid = true;
+
+    formInputState.forEach((input) => {
+      if (input === '') {
+        formValid = false;
+        setFormIsValid(formValid);
       }
     });
 
-    if (passwordRef.current.value !== rePasswordRef.current.value) {
-      setPasswordIsValid(false);
+    if (password !== rePassword) {
+      passwordValid = false;
+      setPasswordIsValid(passwordValid);
     }
+
+    if (formValid && passwordValid) {
+      porfileCtx.firstName = firstName;
+      porfileCtx.middleName = middleName;
+      porfileCtx.lastName = lastName;
+      porfileCtx.password = password;
+      porfileCtx.rePassword = rePassword;
+      porfileCtx.phone = phone;
+      porfileCtx.email = email;
+      porfileCtx.address = address;
+      porfileCtx.city = city;
+      porfileCtx.country = country;
+      alert('Please fill out every ');
+    } else {
+      alert('Please fill out every information');
+    }
+  };
+
+  const firstNameInputHandler = (event) => {
+    setFirstName(event.target.value);
+  };
+
+  const middleNameInputHandler = (event) => {
+    setMiddleName(event.target.value);
+  };
+
+  const lastNameInputHandler = (event) => {
+    setLastName(event.target.value);
+  };
+
+  const passwordInputHandler = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const rePasswordInputHandler = (event) => {
+    setRePassword(event.target.value);
+  };
+
+  const phoneInputHandler = (event) => {
+    setPhone(event.target.value);
+  };
+  const emailInputHandler = (event) => {
+    setEmail(event.target.value);
+  };
+  const addressInputHandler = (event) => {
+    setAddress(event.target.value);
+  };
+  const cityInputHandler = (event) => {
+    setCity(event.target.value);
+  };
+  const countryInputHandler = (event) => {
+    setCountry(event.target.value);
   };
 
   return (
@@ -51,7 +111,7 @@ function Profile() {
                 <div className='card  flex-lg-column flex-md-row '>
                   <div className='card-body card-body  text-center border-bottom profile-bx'>
                     <div className='profile-image mb-4'>
-                      <img src={avatar1} className='rounded-circle' alt />
+                      <img src={avatar1} className='rounded-circle' />
                     </div>
                     <h4 className='fs-22 text-black mb-1'>John Doe</h4>
                     <p className='mb-4'>Programmer</p>
@@ -107,10 +167,7 @@ function Profile() {
                           d='M34.5948 33.6V33.5993H34.5996V26.5577C34.5996 23.113 33.858 20.4593 29.8308 20.4593C27.8948 20.4593 26.5956 21.5218 26.0652 22.5288H26.0093V20.7809H22.1909V33.5993H26.167V27.252C26.167 25.5809 26.4838 23.9647 28.5533 23.9647C30.5926 23.9647 30.6228 25.872 30.6228 27.359V33.6H34.5948Z'
                           fill='white'
                         />
-                        <path
-                          d='M15.7168 20.7816H19.6977V33.6H15.7168V20.7816Z'
-                          fill='white'
-                        />
+                        <path d='M15.7168 20.7816H19.6977V33.6H15.7168V20.7816Z' fill='white' />
                         <path
                           d='M17.7056 14.4C16.4326 14.4 15.3999 15.4327 15.3999 16.7057C15.3999 17.9786 16.4326 19.0329 17.7056 19.0329C18.9785 19.0329 20.0113 17.9786 20.0113 16.7057C20.0103 15.4327 18.9776 14.4 17.7056 14.4Z'
                           fill='white'
@@ -129,9 +186,7 @@ function Profile() {
                 <div className='card profile-card'>
                   <div className='card-header flex-wrap border-0 pb-0'>
                     <div className='d-sm-flex d-block justify-content-end'>
-                      <h3 className='fs-24 text-black font-w600 mr-auto mb-4 mt-3 pr-3'>
-                        My Profile
-                      </h3>
+                      <h3 className='fs-24 text-black font-w600 mr-auto mb-4 mt-3 pr-3'>My Profile</h3>
                       <a
                         className='btn btn-primary rounded mb-4 mr-3 mt-3  '
                         href='#'
@@ -156,8 +211,9 @@ function Profile() {
                               <input
                                 type='text'
                                 className='form-control'
-                                placeholder='Enter name'
-                                ref={firstNameRef}
+                                placeholder='Enter first name'
+                                onChange={firstNameInputHandler}
+                                value={firstName}
                               />
                             </div>
                           </div>
@@ -167,8 +223,9 @@ function Profile() {
                               <input
                                 type='text'
                                 className='form-control'
-                                placeholder='Type here'
-                                ref={middleNameRef}
+                                placeholder='Enter middle name'
+                                onChange={middleNameInputHandler}
+                                value={middleName}
                               />
                             </div>
                           </div>
@@ -178,8 +235,9 @@ function Profile() {
                               <input
                                 type='text'
                                 className='form-control'
-                                placeholder='Last name'
-                                ref={lastNameRef}
+                                placeholder='Enter last name'
+                                onChange={lastNameInputHandler}
+                                value={lastName}
                               />
                             </div>
                           </div>
@@ -190,7 +248,8 @@ function Profile() {
                                 type='password'
                                 className='form-control'
                                 placeholder='Enter password'
-                                ref={passwordRef}
+                                onChange={passwordInputHandler}
+                                value={password}
                               />
                             </div>
                           </div>
@@ -201,7 +260,8 @@ function Profile() {
                                 type='password'
                                 className='form-control'
                                 placeholder='Enter password'
-                                ref={rePasswordRef}
+                                onChange={rePasswordInputHandler}
+                                value={rePassword}
                               />
                             </div>
                           </div>
@@ -225,7 +285,8 @@ function Profile() {
                                   type='text'
                                   className='form-control'
                                   placeholder='Phone no.'
-                                  ref={phoneRef}
+                                  onChange={phoneInputHandler}
+                                  value={phone}
                                 />
                               </div>
                             </div>
@@ -244,7 +305,8 @@ function Profile() {
                                   type='text'
                                   className='form-control'
                                   placeholder='Enter email'
-                                  ref={emailRef}
+                                  onChange={emailInputHandler}
+                                  value={email}
                                 />
                               </div>
                             </div>
@@ -256,8 +318,9 @@ function Profile() {
                                 <input
                                   type='text'
                                   className='form-control'
-                                  placeholder='Enter adress'
-                                  ref={addressRef}
+                                  placeholder='Enter address'
+                                  onChange={addressInputHandler}
+                                  value={address}
                                 />
                               </div>
                             </div>
@@ -269,8 +332,9 @@ function Profile() {
                                 <input
                                   type='text'
                                   className='form-control'
-                                  placeholder='Enter adress'
-                                  ref={cityRef}
+                                  placeholder='Enter city'
+                                  onChange={cityInputHandler}
+                                  value={city}
                                 />
                               </div>
                             </div>
@@ -282,8 +346,9 @@ function Profile() {
                                 <input
                                   type='text'
                                   className='form-control'
-                                  placeholder='Enter adress'
-                                  ref={countryRef}
+                                  placeholder='Enter country'
+                                  onChange={countryInputHandler}
+                                  value={country}
                                 />
                               </div>
                             </div>
