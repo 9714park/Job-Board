@@ -1,6 +1,7 @@
 import React, { Fragment, useRef, useState, useContext } from 'react';
 import avatar1 from '../../images/default-profile.jpg';
 import ProfileContext from '../ctx/profile-context';
+import AlertModal from '../ui/AlertModal';
 
 function Profile() {
   const porfileCtx = useContext(ProfileContext);
@@ -29,8 +30,14 @@ function Profile() {
     country,
   ];
 
-  const [formIsValid, setFormIsValid] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  const [show, setShow] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+
+  const handleClose = () => setShow(false);
+  const handleShow = (message) => {
+    setModalMessage(message);
+    setShow(true);
+  };
 
   const submitHandler = () => {
     let formValid = true;
@@ -39,13 +46,11 @@ function Profile() {
     formInputState.forEach((input) => {
       if (input === '') {
         formValid = false;
-        setFormIsValid(formValid);
       }
     });
 
     if (password !== rePassword) {
       passwordValid = false;
-      setPasswordIsValid(passwordValid);
     }
 
     if (formValid && passwordValid) {
@@ -59,9 +64,9 @@ function Profile() {
       porfileCtx.address = address;
       porfileCtx.city = city;
       porfileCtx.country = country;
-      alert('Please fill out every ');
+      handleShow('Profile edited successfully');
     } else {
-      alert('Please fill out every information');
+      handleShow('Please fill out every information');
     }
   };
 
@@ -104,6 +109,7 @@ function Profile() {
   return (
     <div>
       <Fragment>
+        <AlertModal show={show} onHide={handleClose} message={modalMessage} />
         <div className='row'>
           <div className='col-xl-3 col-xxl-4'>
             <div className='row'>
