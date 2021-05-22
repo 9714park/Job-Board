@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Modal, Form, Col } from 'react-bootstrap';
+import ApplicationContext from '../ctx/application-context';
 
 function JobForm(props) {
+  const applicationCtx = useContext(ApplicationContext);
+  const submitHandler = () => {
+    const id = `#APL-${applicationCtx.length + 1}`;
+    applicationCtx.push({
+      id: id,
+      date: 'June 1, 2021, 10:23PM',
+      position: props.job.title,
+      type: props.job.type,
+      status: 'Candidate',
+    });
+    props.close();
+  };
+
   return (
     <Modal scrollable={true} show={props.show} onHide={props.close} className='job-form'>
       <Modal.Header closeButton>
@@ -11,11 +25,7 @@ function JobForm(props) {
         <Form>
           <Form.Group controlId='formBasicName'>
             <Form.Label>Full Name</Form.Label>
-            <Form.Control
-              type='text'
-              placeholder='Enter your name and surname'
-              name='fullname'
-            />
+            <Form.Control type='text' placeholder='Enter your name and surname' name='fullname' />
           </Form.Group>
 
           <Form.Group controlId='formBasicEmail'>
@@ -40,7 +50,7 @@ function JobForm(props) {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant='primary' type='submit' onClick={props.close}>
+        <Button variant='primary' type='submit' onClick={submitHandler}>
           Submit
         </Button>
         <Button variant='danger' onClick={props.close}>

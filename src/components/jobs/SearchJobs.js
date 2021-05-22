@@ -119,8 +119,9 @@ function SearchJobs() {
   const handleJobDescriptionClose = () => setJobDescriptionShow(false);
   const handleJobDescriptionShow = () => setJobDescriptionShow(true);
   const handleJobFormClose = () => setJobFormShow(false);
-  const handleJobFormShow = (event) => {
+  const handleJobFormShow = (event, job) => {
     event.stopPropagation();
+    setSelectedJob(job);
     setJobFormShow(true);
   };
 
@@ -174,12 +175,8 @@ function SearchJobs() {
 
   return (
     <Fragment>
-      <JobDescription
-        show={showJobDescription}
-        close={handleJobDescriptionClose}
-        job={selectedJob}
-      />
-      <JobForm show={showJobForm} close={handleJobFormClose} />
+      <JobDescription show={showJobDescription} close={handleJobDescriptionClose} job={selectedJob} />
+      <JobForm show={showJobForm} close={handleJobFormClose} job={selectedJob} />
       <div className='d-flex align-items-center flex-wrap search-job bg-white rounded py-3 px-md-3 px-0 mb-4'>
         <div className='col-lg-11 d-md-flex'>
           <input
@@ -199,11 +196,11 @@ function SearchJobs() {
         <SearchFilter onFilter={filterJobList} onReset={onReset} />
       </div>
       <div className='row'>
-        <div className='col-xl-12'>
+        <div className='col-xl-12 job-list'>
           {jobList.map((job) => {
             return (
               <div
-                className='d-flex flex-wrap search-row bg-white py-3 mb-3 rounded justify-content-between align-items-center'
+                className='d-flex flex-wrap search-row bg-white py-2 mb-3 rounded justify-content-between align-items-center'
                 key={job.id}
                 onClick={handleJobSelected.bind(this, job)}>
                 <div className='d-flex col-xl-4 col-xxl-3 col-lg-4 col-sm-6 align-items-center'>
@@ -268,19 +265,12 @@ function SearchJobs() {
                     </g>
                     <defs>
                       <clipPath id='clip6'>
-                        <rect
-                          width={28}
-                          height={28}
-                          fill='white'
-                          transform='translate(13 12)'
-                        />
+                        <rect width={28} height={28} fill='white' transform='translate(13 12)' />
                       </clipPath>
                     </defs>
                   </svg>
                   <div>
-                    <h4 className='sub-title text-black'>
-                      {job.salary.toLocaleString()}
-                    </h4>
+                    <h4 className='sub-title text-black'>{job.salary.toLocaleString()}</h4>
                     <span>Annual Salary Est.</span>
                   </div>
                 </div>
@@ -311,40 +301,19 @@ function SearchJobs() {
                 </div>
                 <div className='col-xl-2 col-xxl-3 text-xl-right text-lg-left text-sm-right col-lg-12 col-sm-6 mt-xl-0 mt-3 actions'>
                   <button
-                    onClick={handleJobFormShow}
+                    onClick={(event) => {
+                      handleJobFormShow(event, job);
+                    }}
                     className='btn btn-sm btn-outline-primary rounded mr-2 p-2'>
                     Apply Now
                   </button>
-                  <label className='like-btn mb-2 mt-3 mt-sm-0'>
-                    <svg
-                      className='bookmark__disabled active'
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='34'
-                      height='34'
-                      viewBox='0 0 24 24'
-                      style={{ fill: '#36599D' }}>
-                      <path d='M18,2H6C4.897,2,4,2.897,4,4v5.276V10v12l8-4.572L20,22V10V9.276V4C20,2.897,19.103,2,18,2z M18,18.553l-6-3.428l-6,3.428 V10V9.276V4h12v5.276V10V18.553z'></path>
-                    </svg>
-
-                    <svg
-                      className='bookmark__enabled'
-                      xmlns='http://www.w3.org/2000/svg'
-                      width='34'
-                      height='34'
-                      viewBox='0 0 24 24'
-                      style={{ fill: '#36599D' }}>
-                      <path d='M19,10.132v-1v-5c0-1.103-0.897-2-2-2H7c-1.103,0-2,0.897-2,2v5v1V22l7-4.666L19,22V10.132z'></path>
-                    </svg>
-                  </label>
                 </div>
               </div>
             );
           })}
         </div>
         <div className='mr-auto ml-3 mt-4 pr-2'>
-          <h6 className='text-black fs-16 font-w600 mb-1'>
-            Showing {jobList.length} Jobs Results
-          </h6>
+          <h6 className='text-black fs-16 font-w600 mb-1'>Showing {jobList.length} Jobs Results</h6>
           <span className='fs-14'>Based your preferences</span>
         </div>
       </div>

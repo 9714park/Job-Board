@@ -1,74 +1,11 @@
-import React, { Fragment, useEffect, useRef, useState, createRef } from 'react';
+import React, { Fragment, useEffect, useRef, useState, createRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import ApplicationContext from '../ctx/application-context';
 
 import './Application.css';
 
 function Application() {
-  const dummyApplicationList = [
-    {
-      id: '#APL-0001',
-      date: 'June 1, 2020, 08:22 AM',
-      position: 'Senior UX Designer',
-      type: 'Full-Time',
-      status: 'Candidate',
-    },
-    {
-      id: '#APL-0002',
-      date: 'June 1, 2020, 08:22 AM',
-      position: 'Junior UI Designer',
-      type: 'Internship',
-      status: 'Accepted',
-    },
-    {
-      id: '#APL-0003',
-      date: 'June 1, 2020, 08:22 AM',
-      position: 'Web Developer',
-      type: 'Internship',
-      status: 'On-Hold',
-    },
-    {
-      id: '#APL-0004',
-      date: 'June 1, 2020, 08:22 AM',
-      position: 'Product Manager',
-      type: 'Part-Time',
-      status: 'Rejected',
-    },
-    {
-      id: '#APL-0005',
-      date: 'June 1, 2020, 08:22 AM',
-      position: 'Senior UX Designer',
-      type: 'Contract',
-      status: 'Pending',
-    },
-    {
-      id: '#APL-0006',
-      date: 'June 1, 2020, 08:22 AM',
-      position: 'Senior UX Designer',
-      type: 'Full-Time',
-      status: 'Candidate',
-    },
-    {
-      id: '#APL-0007',
-      date: 'June 1, 2020, 08:22 AM',
-      position: 'Quality Tester',
-      type: 'Full-Time',
-      status: 'Candidate',
-    },
-    {
-      id: '#APL-0008',
-      date: 'June 1, 2020, 08:22 AM',
-      position: 'Senior Engineer',
-      type: 'Full-Time',
-      status: 'Pending',
-    },
-    {
-      id: '#APL-0009',
-      date: 'June 1, 2020, 08:22 AM',
-      position: 'Senior UX Designer',
-      type: 'Part-Time',
-      status: 'On-Hold',
-    },
-  ];
+  const applicationCtx = useContext(ApplicationContext);
 
   const [data, setData] = useState(document.querySelectorAll('#application tbody tr'));
   const sort = 7;
@@ -181,7 +118,7 @@ function Application() {
                   </tr>
                 </thead>
                 <tbody>
-                  {dummyApplicationList.map((application, idx) => {
+                  {applicationCtx.map((application, idx) => {
                     const newCheckboxRef = createRef();
                     checkboxRefList.push(newCheckboxRef);
 
@@ -197,10 +134,7 @@ function Application() {
                                 ref={newCheckboxRef}
                                 required
                               />
-                              <label
-                                className='custom-control-label'
-                                htmlFor={`check${idx}`}
-                              />
+                              <label className='custom-control-label' htmlFor={`check${idx}`} />
                             </div>
                           </div>
                         </td>
@@ -233,9 +167,7 @@ function Application() {
                               />
                             </svg>
                             <div className='media-body text-nowrap'>
-                              <h6 className='text-black font-w600 fs-16 mb-0'>
-                                {application.position}
-                              </h6>
+                              <h6 className='text-black font-w600 fs-16 mb-0'>{application.position}</h6>
                             </div>
                           </div>
                         </td>
@@ -265,15 +197,11 @@ function Application() {
                   of {data.length} entries
                 </div>
 
-                <div
-                  className='dataTables_paginate paging_simple_numbers'
-                  id='example5_paginate'>
+                <div className='dataTables_paginate paging_simple_numbers' id='example5_paginate'>
                   <Link
                     to='/application'
                     className='paginate_button previous disabled'
-                    onClick={() =>
-                      activePag.current > 0 && onClick(activePag.current - 1)
-                    }>
+                    onClick={() => activePag.current > 0 && onClick(activePag.current - 1)}>
                     Previous
                   </Link>
                   <span>
@@ -281,9 +209,7 @@ function Application() {
                       <Link
                         key={i}
                         to='/application'
-                        className={`paginate_button  ${
-                          activePag.current === i ? 'current' : ''
-                        } `}
+                        className={`paginate_button  ${activePag.current === i ? 'current' : ''} `}
                         onClick={() => onClick(i)}>
                         {number}
                       </Link>
@@ -293,8 +219,7 @@ function Application() {
                     to='/application'
                     className='paginate_button next'
                     onClick={() =>
-                      activePag.current + 1 < paggination.length &&
-                      onClick(activePag.current + 1)
+                      activePag.current + 1 < paggination.length && onClick(activePag.current + 1)
                     }>
                     Next
                   </Link>
