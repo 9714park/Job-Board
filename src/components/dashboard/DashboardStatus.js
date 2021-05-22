@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ApplicationContext from '../ctx/application-context';
 import './DashboardStatus.css';
 
 function DashboardStatus() {
+  const applicationCtx = useContext(ApplicationContext);
   return (
     <div className='mb-3'>
       <div className='row status-panels'>
@@ -10,7 +12,7 @@ function DashboardStatus() {
             <div className='card-body'>
               <div className='media'>
                 <div className='media-body mr-3'>
-                  <h2 className='text-success'>43</h2>
+                  <h2 className='text-success'>{applicationCtx.length}</h2>
                   <span className='position'>Application Sent</span>
                 </div>
                 <span className='cd-icon bgl-success'>
@@ -44,7 +46,9 @@ function DashboardStatus() {
             <div className='card-body'>
               <div className='media'>
                 <div className='media-body mr-3'>
-                  <h2 className='text-secondary'>27</h2>
+                  <h2 className='text-secondary'>
+                    {applicationCtx.filter((application) => application.status == 'Interview').length}
+                  </h2>
                   <span className='position'>Interviews Schedule</span>
                 </div>
                 <span className='cd-icon bgl-secondary'>
@@ -74,7 +78,7 @@ function DashboardStatus() {
             <div className='card-body'>
               <div className='media'>
                 <div className='media-body mr-3'>
-                  <h2 className='text-warning'>52k</h2>
+                  <h2 className='text-warning'>124</h2>
                   <span className='position'>Profile Viewed</span>
                 </div>
                 <span className='cd-icon bgl-warning'>

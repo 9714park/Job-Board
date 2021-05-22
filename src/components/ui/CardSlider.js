@@ -159,7 +159,7 @@ const CardSlider = () => {
                 </svg>
                 $14,000 - $25,000
               </span>
-              <span>/monthly</span>
+              <span>/annualy</span>
             </div>
             <div className='d-flex mb-3'>
               <span className='text-black mr-auto font-w500'>
@@ -175,7 +175,7 @@ const CardSlider = () => {
                     fill='#A9A9A9'
                   />
                 </svg>
-                London, England
+                Toronto, Ontario
               </span>
             </div>
             <div>
@@ -200,7 +200,7 @@ const CardSlider = () => {
                     fill='#A9A9A9'
                   />
                 </svg>
-                FULTIME
+                Full-Time
               </span>
             </div>
           </div>
@@ -278,7 +278,7 @@ const CardSlider = () => {
                 </svg>
                 $21,000 - $25,000
               </span>
-              <span>/monthly</span>
+              <span>/annualy</span>
             </div>
             <div className='d-flex mb-3'>
               <span className='text-black mr-auto font-w500'>
@@ -294,7 +294,7 @@ const CardSlider = () => {
                     fill='#A9A9A9'
                   />
                 </svg>
-                Manchester, England
+                London, Ontario
               </span>
             </div>
             <div>
@@ -319,7 +319,7 @@ const CardSlider = () => {
                     fill='#A9A9A9'
                   />
                 </svg>
-                FREELANCE, PART TIME
+                Internship
               </span>
             </div>
           </div>
@@ -397,7 +397,7 @@ const CardSlider = () => {
                 </svg>
                 $21,000 - $25,000
               </span>
-              <span>/monthly</span>
+              <span>/annualy</span>
             </div>
             <div className='d-flex mb-3'>
               <span className='text-black mr-auto font-w500'>
@@ -413,7 +413,7 @@ const CardSlider = () => {
                     fill='#A9A9A9'
                   />
                 </svg>
-                Manchester, England
+                Hamilton, Ontario
               </span>
             </div>
             <div>
@@ -438,7 +438,7 @@ const CardSlider = () => {
                     fill='#A9A9A9'
                   />
                 </svg>
-                FREELANCE, PART TIME
+                Part-Time
               </span>
             </div>
           </div>
@@ -520,7 +520,7 @@ const CardSlider = () => {
                 </svg>
                 $21,000 - $25,000
               </span>
-              <span>/monthly</span>
+              <span>/annualy</span>
             </div>
             <div className='d-flex mb-3'>
               <span className='text-black mr-auto font-w500'>
@@ -536,7 +536,7 @@ const CardSlider = () => {
                     fill='#A9A9A9'
                   />
                 </svg>
-                Manchester, England
+                Toronto, Ontario
               </span>
             </div>
             <div>
@@ -561,7 +561,7 @@ const CardSlider = () => {
                     fill='#A9A9A9'
                   />
                 </svg>
-                FREELANCE, PART TIME
+                Full-Time
               </span>
             </div>
           </div>

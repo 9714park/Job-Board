@@ -42,14 +42,6 @@ function Application() {
     settest(i);
   };
 
-  let checkboxRefList = [];
-
-  const handleAllCheckbox = (event) => {
-    checkboxRefList.forEach((ref) => {
-      event.target.checked ? (ref.current.checked = true) : (ref.current.checked = false);
-    });
-  };
-
   const returnStatusButton = (application) => {
     if (application.status == 'Candidate') {
       return (
@@ -75,9 +67,15 @@ function Application() {
           Rejected
         </a>
       );
+    } else if (application.status == 'Interview') {
+      return (
+        <a className='btn rounded btn-success mr-3' href='#'>
+          Interview
+        </a>
+      );
     } else {
       return (
-        <a className='btn rounded btn-success mr-3 ' href='#'>
+        <a className='btn rounded btn-primary mr-3 ' href='#'>
           Accepted
         </a>
       );
@@ -95,20 +93,6 @@ function Application() {
                 id='example5'>
                 <thead>
                   <tr role='row'>
-                    <th className='application_sorting_asc'>
-                      <div className='checkbox mr-0 align-self-center'>
-                        <div className='custom-control custom-checkbox '>
-                          <input
-                            type='checkbox'
-                            className='custom-control-input'
-                            id='checkAll'
-                            required
-                            onClick={(event) => handleAllCheckbox(event)}
-                          />
-                          <label className='custom-control-label' htmlFor='checkAll' />
-                        </div>
-                      </div>
-                    </th>
                     <th className='sorting'>ID</th>
                     <th className='sorting'>Date Applied</th>
                     <th className='sorting'>Company</th>
@@ -118,26 +102,9 @@ function Application() {
                   </tr>
                 </thead>
                 <tbody>
-                  {applicationCtx.map((application, idx) => {
-                    const newCheckboxRef = createRef();
-                    checkboxRefList.push(newCheckboxRef);
-
+                  {applicationCtx.map((application) => {
                     return (
                       <tr role='row' className='odd' key={application.id}>
-                        <td className='application_sorting_1'>
-                          <div className='checkbox mr-0 align-self-center'>
-                            <div className='custom-control custom-checkbox '>
-                              <input
-                                type='checkbox'
-                                className='custom-control-input'
-                                id={`check${idx}`}
-                                ref={newCheckboxRef}
-                                required
-                              />
-                              <label className='custom-control-label' htmlFor={`check${idx}`} />
-                            </div>
-                          </div>
-                        </td>
                         <td>{application.id}</td>
                         <td>{application.date}</td>
                         <td>

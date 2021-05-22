@@ -13,7 +13,7 @@ const ApplicationContext = createContext([
     date: 'June 1, 2020, 08:22 AM',
     position: 'Junior UI Designer',
     type: 'Internship',
-    status: 'Accepted',
+    status: 'Interview',
   },
   {
     id: '#APL-3',
@@ -41,14 +41,14 @@ const ApplicationContext = createContext([
     date: 'June 1, 2020, 08:22 AM',
     position: 'Senior UX Designer',
     type: 'Full-Time',
-    status: 'Candidate',
+    status: 'Pending',
   },
   {
     id: '#APL-7',
     date: 'June 1, 2020, 08:22 AM',
     position: 'Quality Tester',
     type: 'Full-Time',
-    status: 'Candidate',
+    status: 'Accepted',
   },
   {
     id: '#APL-8',

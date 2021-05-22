@@ -12,9 +12,7 @@ function DashboardJobs() {
         <div className='testimonial-one owl-carousel'>
           <CardSlider />
         </div>
-        <Link
-          to='/companies'
-          className='btn btn-outline-primary rounded mb-sm-0 mt-2 ml-3'>
+        <Link to='/jobs' className='btn btn-outline-primary rounded mb-sm-0 mt-2 ml-3'>
           View More
         </Link>
       </div>

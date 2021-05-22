@@ -198,9 +198,6 @@ function Profile() {
                         onClick={submitHandler}>
                         Save Changes
                       </a>
-                      <a href='#' className='btn btn-danger light rounded mb-4 mt-3 '>
-                        Reset
-                      </a>
                     </div>
                   </div>
                   <div className='card-body'>
