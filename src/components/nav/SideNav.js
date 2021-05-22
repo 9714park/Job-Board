@@ -26,7 +26,7 @@ function SideNav() {
           </Link>
         </li>
         <li className='nav-item'>
-          <Link to='/home'>
+          <Link to='/profile'>
             <i className='bx bx-user-circle'></i>
             <span className='nav-text'>Profile</span>
           </Link>

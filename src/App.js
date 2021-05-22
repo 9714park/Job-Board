@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
 import SearchJobs from './components/jobs/SearchJobs';
 import Application from './components/application/Application';
+import Profile from './components/profile/Profile';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
             </Route>
             <Route exact path='/application'>
               <Application />
+            </Route>
+            <Route exact path='/profile'>
+              <Profile />
             </Route>
           </Switch>
         </div>
