@@ -119,21 +119,20 @@ function Profile() {
                     <div className='profile-image mb-4'>
                       <img src={avatar1} className='rounded-circle' />
                     </div>
-                    <h4 className='fs-22 text-black mb-1'>John Doe</h4>
-                    <p className='mb-4'>Programmer</p>
+                    <h4 className='fs-22 text-black mb-1'>{porfileCtx.getFullName()}</h4>
                   </div>
                   <div className='card-body  border-left'>
                     <div className='d-flex mb-3 align-items-center justify-content-center'>
                       <a className='contact-icon mr-3' href='#'>
                         <i className='fa fa-phone' aria-hidden='true' />
                       </a>
-                      <span className='text-black'>+1 999 111 2</span>
+                      <span className='text-black'>{porfileCtx.phone}</span>
                     </div>
                     <div className='d-flex align-items-center justify-content-center'>
                       <a className='contact-icon mr-3' href='#'>
                         <i className='las la-envelope' />
                       </a>
-                      <span className='text-black'>test@test.com</span>
+                      <span className='text-black'>{porfileCtx.email}</span>
                     </div>
                   </div>
                 </div>

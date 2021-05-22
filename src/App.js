@@ -21,6 +21,9 @@ function App() {
         address: '123 Main St',
         city: 'Toronto',
         country: 'Canada',
+        getFullName: function () {
+          return `${this.firstName} ${this.middleName} ${this.lastName}`;
+        },
       }}>
       <Router>
         <div className='App'>
