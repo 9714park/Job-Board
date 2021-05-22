@@ -31,13 +31,6 @@ function SideNav() {
             <span className='nav-text'>Profile</span>
           </Link>
         </li>
-
-        <li className='nav-item'>
-          <Link to='/home'>
-            <i className='bx bx-message-detail'></i>
-            <span className='nav-text'>Messages</span>
-          </Link>
-        </li>
       </ul>
     </div>
   );

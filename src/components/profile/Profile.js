@@ -4,18 +4,19 @@ import ProfileContext from '../ctx/profile-context';
 import AlertModal from '../ui/AlertModal';
 
 function Profile() {
-  const porfileCtx = useContext(ProfileContext);
+  const profileCtx = useContext(ProfileContext);
 
-  const [firstName, setFirstName] = useState(porfileCtx.firstName);
-  const [middleName, setMiddleName] = useState(porfileCtx.middleName);
-  const [lastName, setLastName] = useState(porfileCtx.lastName);
-  const [password, setPassword] = useState(porfileCtx.password);
-  const [rePassword, setRePassword] = useState(porfileCtx.rePassword);
-  const [phone, setPhone] = useState(porfileCtx.phone);
-  const [email, setEmail] = useState(porfileCtx.email);
-  const [address, setAddress] = useState(porfileCtx.address);
-  const [city, setCity] = useState(porfileCtx.city);
-  const [country, setCountry] = useState(porfileCtx.country);
+  const [firstName, setFirstName] = useState(profileCtx.firstName);
+  const [middleName, setMiddleName] = useState(profileCtx.middleName);
+  const [lastName, setLastName] = useState(profileCtx.lastName);
+  const [password, setPassword] = useState(profileCtx.password);
+  const [rePassword, setRePassword] = useState(profileCtx.rePassword);
+  const [phone, setPhone] = useState(profileCtx.phone);
+  const [email, setEmail] = useState(profileCtx.email);
+  const [address, setAddress] = useState(profileCtx.address);
+  const [city, setCity] = useState(profileCtx.city);
+  const [country, setCountry] = useState(profileCtx.country);
+  const [aboutMe, setAboutMe] = useState(profileCtx.aboutMe);
 
   const formInputState = [
     firstName,
@@ -28,6 +29,7 @@ function Profile() {
     address,
     city,
     country,
+    aboutMe,
   ];
 
   const [show, setShow] = useState(false);
@@ -54,16 +56,17 @@ function Profile() {
     }
 
     if (formValid && passwordValid) {
-      porfileCtx.firstName = firstName;
-      porfileCtx.middleName = middleName;
-      porfileCtx.lastName = lastName;
-      porfileCtx.password = password;
-      porfileCtx.rePassword = rePassword;
-      porfileCtx.phone = phone;
-      porfileCtx.email = email;
-      porfileCtx.address = address;
-      porfileCtx.city = city;
-      porfileCtx.country = country;
+      profileCtx.firstName = firstName;
+      profileCtx.middleName = middleName;
+      profileCtx.lastName = lastName;
+      profileCtx.password = password;
+      profileCtx.rePassword = rePassword;
+      profileCtx.phone = phone;
+      profileCtx.email = email;
+      profileCtx.address = address;
+      profileCtx.city = city;
+      profileCtx.country = country;
+      profileCtx.aboutMe = aboutMe;
       handleShow('Profile edited successfully');
     } else {
       handleShow('Please fill out every information');
@@ -106,6 +109,10 @@ function Profile() {
     setCountry(event.target.value);
   };
 
+  const aboutMeInputHandler = (event) => {
+    setAboutMe(event.target.value);
+  };
+
   return (
     <div>
       <Fragment>
@@ -119,20 +126,20 @@ function Profile() {
                     <div className='profile-image mb-4'>
                       <img src={avatar1} className='rounded-circle' />
                     </div>
-                    <h4 className='fs-22 text-black mb-1'>{porfileCtx.getFullName()}</h4>
+                    <h4 className='fs-22 text-black mb-1'>{profileCtx.getFullName()}</h4>
                   </div>
                   <div className='card-body  border-left'>
                     <div className='d-flex mb-3 align-items-center justify-content-center'>
                       <a className='contact-icon mr-3' href='#'>
                         <i className='fa fa-phone' aria-hidden='true' />
                       </a>
-                      <span className='text-black'>{porfileCtx.phone}</span>
+                      <span className='text-black'>{profileCtx.phone}</span>
                     </div>
                     <div className='d-flex align-items-center justify-content-center'>
                       <a className='contact-icon mr-3' href='#'>
                         <i className='las la-envelope' />
                       </a>
-                      <span className='text-black'>{porfileCtx.email}</span>
+                      <span className='text-black'>{profileCtx.email}</span>
                     </div>
                   </div>
                 </div>
@@ -365,9 +372,8 @@ function Profile() {
                               <textarea
                                 className='form-control'
                                 rows={6}
-                                defaultValue={
-                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum que laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta su\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t'
-                                }
+                                onChange={aboutMeInputHandler}
+                                defaultValue={aboutMe}
                               />
                             </div>
                           </div>

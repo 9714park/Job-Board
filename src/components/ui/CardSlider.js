@@ -114,7 +114,7 @@ const CardSlider = () => {
               </svg>
               <div className='media-body'>
                 <h4 className='fs-20'>
-                  <Link to='/search-job' className='text-black'>
+                  <Link to='/jobs' className='text-black'>
                     Intern UX Designer
                   </Link>
                 </h4>
@@ -233,7 +233,7 @@ const CardSlider = () => {
               </svg>
               <div className='media-body'>
                 <h4 className='fs-20'>
-                  <Link to='/search-job' className='text-black'>
+                  <Link to='/jobs' className='text-black'>
                     Senior UX Designer
                   </Link>
                 </h4>
@@ -352,7 +352,7 @@ const CardSlider = () => {
               </svg>
               <div className='media-body'>
                 <h4 className='fs-20'>
-                  <Link to='/search-job' className='text-black'>
+                  <Link to='/jobs' className='text-black'>
                     Freelance UI Designer
                   </Link>
                 </h4>
@@ -475,7 +475,7 @@ const CardSlider = () => {
               </svg>
               <div className='media-body'>
                 <h4 className='fs-20'>
-                  <Link to='/search-job' className='text-black'>
+                  <Link to='/jobs' className='text-black'>
                     Senior UX Designer
                   </Link>
                 </h4>
