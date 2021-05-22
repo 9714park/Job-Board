@@ -42,5 +42,9 @@
 }
 
 .side-nav .nav-item a:hover {
-  color: rgb(36, 36, 36)
+  color: rgb(228, 154, 119)
+}
+
+.side-nav .nav-item.active a {
+  color: rgb(228, 154, 119)
 }
