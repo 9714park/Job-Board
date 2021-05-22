@@ -1,8 +1,46 @@
-import React, { Fragment } from 'react';
-import { Form, Dropdown } from 'react-bootstrap';
+import React, { Fragment, useRef, useState } from 'react';
 import avatar1 from '../../images/default-profile.jpg';
 
 function Profile() {
+  const firstNameRef = useRef('');
+  const middleNameRef = useRef('');
+  const lastNameRef = useRef('');
+  const passwordRef = useRef('');
+  const rePasswordRef = useRef('');
+  const phoneRef = useRef('');
+  const emailRef = useRef('');
+  const addressRef = useRef('');
+  const cityRef = useRef('');
+  const countryRef = useRef('');
+
+  const inputRefList = [
+    firstNameRef,
+    middleNameRef,
+    lastNameRef,
+    passwordRef,
+    rePasswordRef,
+    phoneRef,
+    emailRef,
+    addressRef,
+    cityRef,
+    countryRef,
+  ];
+
+  const [formIsValid, setFormIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
+
+  const submitHandler = () => {
+    inputRefList.forEach((inputRef) => {
+      if (inputRef.current.value === '') {
+        setFormIsValid(false);
+      }
+    });
+
+    if (passwordRef.current.value !== rePasswordRef.current.value) {
+      setPasswordIsValid(false);
+    }
+  };
+
   return (
     <div>
       <Fragment>
@@ -90,14 +128,17 @@ function Profile() {
               <div className='col-xl-12'>
                 <div className='card profile-card'>
                   <div className='card-header flex-wrap border-0 pb-0'>
-                    <h3 className='fs-24 text-black font-w600 mr-auto mb-2 pr-3'>
-                      My Profile
-                    </h3>
                     <div className='d-sm-flex d-block justify-content-end'>
-                      <a className='btn btn-primary rounded mb-3 mr-3 ' href='#'>
+                      <h3 className='fs-24 text-black font-w600 mr-auto mb-4 mt-3 pr-3'>
+                        My Profile
+                      </h3>
+                      <a
+                        className='btn btn-primary rounded mb-4 mr-3 mt-3  '
+                        href='#'
+                        onClick={submitHandler}>
                         Save Changes
                       </a>
-                      <a href='#' className='btn btn-danger light rounded mb-3'>
+                      <a href='#' className='btn btn-danger light rounded mb-4 mt-3 '>
                         Reset
                       </a>
                     </div>
@@ -106,7 +147,7 @@ function Profile() {
                     <form>
                       <div className='mb-sm-5 mb-2'>
                         <div className='title mb-4'>
-                          <span className='fs-18 text-black font-w600'>Generals</span>
+                          <span className='fs-18 text-black font-w600'>GENERAL</span>
                         </div>
                         <div className='row'>
                           <div className='col-xl-4 col-sm-6'>
@@ -116,6 +157,7 @@ function Profile() {
                                 type='text'
                                 className='form-control'
                                 placeholder='Enter name'
+                                ref={firstNameRef}
                               />
                             </div>
                           </div>
@@ -126,6 +168,7 @@ function Profile() {
                                 type='text'
                                 className='form-control'
                                 placeholder='Type here'
+                                ref={middleNameRef}
                               />
                             </div>
                           </div>
@@ -136,36 +179,29 @@ function Profile() {
                                 type='text'
                                 className='form-control'
                                 placeholder='Last name'
+                                ref={lastNameRef}
                               />
                             </div>
                           </div>
-                          <div className='col-xl-4 col-sm-6'>
-                            <div className='form-group'>
-                              <label>Username</label>
-                              <input
-                                type='text'
-                                className='form-control'
-                                placeholder='User name'
-                              />
-                            </div>
-                          </div>
-                          <div className='col-xl-4 col-sm-6'>
+                          <div className='col-xl-6 col-sm-6'>
                             <div className='form-group'>
                               <label>Password</label>
                               <input
                                 type='password'
                                 className='form-control'
                                 placeholder='Enter password'
+                                ref={passwordRef}
                               />
                             </div>
                           </div>
-                          <div className='col-xl-4 col-sm-6'>
+                          <div className='col-xl-6 col-sm-6'>
                             <div className='form-group'>
                               <label>Re-Type Password</label>
                               <input
                                 type='password'
                                 className='form-control'
                                 placeholder='Enter password'
+                                ref={rePasswordRef}
                               />
                             </div>
                           </div>
@@ -176,9 +212,9 @@ function Profile() {
                           <span className='fs-18 text-black font-w600'>CONTACT</span>
                         </div>
                         <div className='row'>
-                          <div className='col-xl-4 col-sm-6'>
+                          <div className='col-xl-6 col-sm-6'>
                             <div className='form-group'>
-                              <label>MobilePhone</label>
+                              <label>Phone</label>
                               <div className='input-group input-icon mb-3'>
                                 <div className='input-group-prepend'>
                                   <span className='input-group-text' id='basic-addon1'>
@@ -189,40 +225,26 @@ function Profile() {
                                   type='text'
                                   className='form-control'
                                   placeholder='Phone no.'
+                                  ref={phoneRef}
                                 />
                               </div>
                             </div>
                           </div>
-                          <div className='col-xl-4 col-sm-6'>
-                            <div className='form-group'>
-                              <label>Whatsapp</label>
-                              <div className='input-group input-icon mb-3'>
-                                <div className='input-group-prepend'>
-                                  <span className='input-group-text' id='basic-addon2'>
-                                    <i className='fa fa-whatsapp' aria-hidden='true' />
-                                  </span>
-                                </div>
-                                <input
-                                  type='text'
-                                  className='form-control'
-                                  placeholder='Phone no.'
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div className='col-xl-4 col-sm-6'>
+
+                          <div className='col-xl-6 col-sm-6'>
                             <div className='form-group'>
                               <label>Email</label>
                               <div className='input-group input-icon mb-3'>
                                 <div className='input-group-prepend'>
                                   <span className='input-group-text' id='basic-addon3'>
-                                    <i className='las la-envelope' />
+                                    <i className='fa fa-envelope' />
                                   </span>
                                 </div>
                                 <input
                                   type='text'
                                   className='form-control'
                                   placeholder='Enter email'
+                                  ref={emailRef}
                                 />
                               </div>
                             </div>
@@ -235,6 +257,7 @@ function Profile() {
                                   type='text'
                                   className='form-control'
                                   placeholder='Enter adress'
+                                  ref={addressRef}
                                 />
                               </div>
                             </div>
@@ -247,6 +270,7 @@ function Profile() {
                                   type='text'
                                   className='form-control'
                                   placeholder='Enter adress'
+                                  ref={cityRef}
                                 />
                               </div>
                             </div>
@@ -259,6 +283,7 @@ function Profile() {
                                   type='text'
                                   className='form-control'
                                   placeholder='Enter adress'
+                                  ref={countryRef}
                                 />
                               </div>
                             </div>
