@@ -219,11 +219,12 @@ function Profile() {
                               <label>First Name</label>
                               <input
                                 type='text'
-                                className='form-control'
+                                className={`form-control ${firstName == '' ? 'is-invalid' : ''}`}
                                 placeholder='Enter first name'
                                 onChange={firstNameInputHandler}
                                 value={firstName}
                               />
+                              <div class='invalid-feedback'>Please enter your first name</div>
                             </div>
                           </div>
                           <div className='col-xl-4 col-sm-6'>
@@ -243,11 +244,12 @@ function Profile() {
                               <label>Last Name</label>
                               <input
                                 type='text'
-                                className='form-control'
+                                className={`form-control ${lastName == '' ? 'is-invalid' : ''}`}
                                 placeholder='Enter last name'
                                 onChange={lastNameInputHandler}
                                 value={lastName}
                               />
+                              <div class='invalid-feedback'>Please enter your last name</div>
                             </div>
                           </div>
                           <div className='col-xl-6 col-sm-6'>
@@ -255,11 +257,12 @@ function Profile() {
                               <label>Password</label>
                               <input
                                 type='password'
-                                className='form-control'
+                                className={`form-control ${password == '' ? 'is-invalid' : ''}`}
                                 placeholder='Enter password'
                                 onChange={passwordInputHandler}
                                 value={password}
                               />
+                              <div class='invalid-feedback'>Please enter your password</div>
                             </div>
                           </div>
                           <div className='col-xl-6 col-sm-6'>
@@ -267,11 +270,14 @@ function Profile() {
                               <label>Re-Type Password</label>
                               <input
                                 type='password'
-                                className='form-control'
+                                className={`form-control ${
+                                  rePassword == '' || rePassword != password ? 'is-invalid' : ''
+                                }`}
                                 placeholder='Enter password'
                                 onChange={rePasswordInputHandler}
                                 value={rePassword}
                               />
+                              <div class='invalid-feedback'>Please re-enter your password</div>
                             </div>
                           </div>
                         </div>
@@ -312,11 +318,12 @@ function Profile() {
                                 </div>
                                 <input
                                   type='text'
-                                  className='form-control'
+                                  className={`form-control ${email == '' ? 'is-invalid' : ''}`}
                                   placeholder='Enter email'
                                   onChange={emailInputHandler}
                                   value={email}
                                 />
+                                <div class='invalid-feedback'>Please enter your email</div>
                               </div>
                             </div>
                           </div>
