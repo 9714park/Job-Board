@@ -119,6 +119,7 @@ function SearchJobs() {
   const handleJobDescriptionClose = () => setJobDescriptionShow(false);
   const handleJobDescriptionShow = () => setJobDescriptionShow(true);
   const handleJobFormClose = () => setJobFormShow(false);
+
   const handleJobFormShow = (event, job) => {
     event.stopPropagation();
     setSelectedJob(job);
@@ -183,7 +184,7 @@ function SearchJobs() {
             className='form-control input-rounded mr-auto mb-md-0 mb-3'
             type='text'
             value={searchInput}
-            placeholder='Search by Title, Company or any jobs keyword...'
+            placeholder='Search by job title'
             onChange={onSearchInput}
           />
         </div>

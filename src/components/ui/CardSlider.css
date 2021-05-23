@@ -1,3 +1,8 @@
 .slick-prev:before, .slick-next:before {
   color: var(--fifth-color)
 }
+
+.job-title:hover {
+  color: var(--second-color);
+  cursor: pointer;
+}
