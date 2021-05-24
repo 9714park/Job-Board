@@ -11,7 +11,7 @@ The web application was developed using _React_ and _Bootstrap_.
 
 Please install [node.js](https://nodejs.org/en/download/) and [npm](https://www.npmjs.com/get-npm) in order to run the app.
 
-If there are any issues please follow the guidelines from this [article](https://phoenixnap.com/kb/install-node-js-npm-on-windows)/
+If there are any issues please follow the guidelines from this [article](https://phoenixnap.com/kb/install-node-js-npm-on-windows).
 
 ## Running the App
 
