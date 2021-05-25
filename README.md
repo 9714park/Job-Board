@@ -6,6 +6,9 @@ The web application was developed using _React_ and _Bootstrap_.
 
 ![image](https://user-images.githubusercontent.com/25916322/119289589-e6105880-bc18-11eb-8850-a85455fafe2d.png)
 
+## Technologies Used
+
+React, Bootstrap, HTML, CSS
 
 ## Required Set-up
 
